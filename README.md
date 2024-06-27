@@ -35,32 +35,11 @@ Enables users to add a new shoe to the tracker with an initial mileage of 0.
 
 ### Delete Shoe
 
-Allows users to remove a shoe from the data which will delets the shoe and it's mileage stored with it.
+Allows users to remove a shoe from the data which will delete the shoe and it's mileage stored with it.
 
 ## Data Persistence
 
 Data is stored in `shoe_database.json`:
-- **Loading Data**: Data is loaded from `shoe_database.json` when the program starts.
-- **Saving Data**: Changes made during program execution are saved back to `shoe_database.json` before exiting.
+Data is loaded from `shoe_database.json` when the program starts.
+Changes made to the data are saved back to `shoe_database.json` before exiting the program
 
-## Error Handling
-
-- Handles file not found errors when `shoe_database.json` is missing.
-- Manages permission denied errors when the program lacks write access to `shoe_database.json`.
-- Performs input validation to ensure correct data formats and prevent errors.
-
-## Dependencies
-
-- No external dependencies are required beyond Python standard libraries.
-
-## Contributing
-
-Contributions to the Shoe Mileage Tracker project are welcome! Please fork the repository and submit pull requests.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-
-For questions or feedback, please contact [Your Name](mailto:your_email@example.com).
