@@ -37,6 +37,31 @@ Enables users to add a new shoe to the tracker with an initial mileage of 0.
 
 Allows users to remove a shoe from the data which will delete the shoe and it's mileage stored with it.
 
+## Variables and Variable Scope
+
+This shoe mileage tracker uses variables to manage and manipulate data throughout the execution:
+
+- Local variables like `shoe_name`and `distance` are used within specific functions to store temporary data such as adding s new shoe or assigning mileage to a shoe.    - 
+- `choice`gets the users selection to determine which to action to take(e.g., add a run, view mileage).
+
+## Loops and Conditional Control Structures
+
+- The main loop prompts the user for input and executes various actions based on the users choices until they choose to exit. (choice 5)
+
+- The for loop (`view_shoe_mileage()`) repeats through the shoe data to display the mileage for each shoe that is tracked.
+
+- If-Elif-Else conditional statements are used to make decisions based on user input (`choice`) and handle various operations such as adding runs, viewing mileage, adding new shoes, and deleting shoes.
+
+## Error Handling
+
+This shoe mileage tracker implements error handling strategies to manage potential issues and ensure reliable operation:
+
+- File Not Found Error 
+The functions load_data() and load_data_from_json(file_name) use try-except blocks to manage the situation where they can't find the shoe_database.json file. If the file isn't found, they set data to an empty dictionary ({}) or list ([]). This ensures the program can continue without crashing if the file is missing
+
+
+
+
 ## Data Persistence
 
 Data is stored in `shoe_database.json`:
