@@ -5,8 +5,16 @@ def load_data():
     try:
         with open('shoe_database.json', 'r') as f:
             data = json.load(f)
+    except FileNotFoundError: # use of error handling except 
+        data = {} #json structure is dictionary
+    return data
+
+def load_data_from_json(file_name):
+    try:
+        with open(file_name, 'r') as f:
+            data = json.load(f)
     except FileNotFoundError:
-        data = {}
+        data = [] 
     return data
 
 def save_data(data):
@@ -20,24 +28,31 @@ def add_run(data, shoe_name, distance):
         data[shoe_name] = distance
 
 def add_new_shoe(data, shoe_name):
-    data[shoe_name] = 0  # Assuming initial mileage is 0
+    data[shoe_name] = 0  # Assuming initial km's is 0
     save_data(data)      # Save updated data to the JSON file
 
 
-def view_shoe_mileage(data):
-    if not data:
+def view_shoe_mileage(file_name):
+    # Load shoe data from JSON
+    shoe_data = load_data_from_json(file_name)
+
+    if not shoe_data:
         print("No shoes tracked yet.")
         return
 
-    # Using pandas DataFrame for easier manipulation (optional)
-    df = pd.DataFrame(list(data.items()), columns=['Shoe', 'Mileage'])
+    # Print header
     print("Shoe Mileage Tracker")
-    print(df.to_string(index=False))
+    print("--------------------")
 
-# Call the function to view shoe mileage
-view_shoe_mileage(shoe_data)
+    # Print out each shoe's details
+    for shoe in shoe_data:
+        shoe_model = shoe.get('Shoe Model', 'Unknown Model')
+        total_mileage = shoe.get('Total Mileage', 'Unknown Mileage')
+        print(f"{shoe_model}: {total_mileage} kilometers")
 
-
+# Example to use:
+# file_name = 'shoe_database.json'
+# view_shoe_mileage(file_name)
 
 def delete_shoe(data, shoe_name):
     if shoe_name in data:
@@ -45,6 +60,7 @@ def delete_shoe(data, shoe_name):
 
 def main():
     data = load_data()
+    print(data)
     while True:
         print("\nShoe Mileage Tracker")
         print("1. Add Run")
@@ -68,12 +84,12 @@ def main():
             add_new_shoe(data, shoe_name)
             print(f"Shoe '{shoe_name}' added!")
         elif choice == '4':
-            shoe_name = input("Enter shoe name to delete: ")
+            shoe_name = input("Enter the shoe you would like to delete: ")
             delete_shoe(data, shoe_name)
             print(f"Shoe '{shoe_name}' deleted!")
         elif choice == '5':
             save_data(data)
-            print("Exiting program. Goodbye!")
+            print("Exiting program. See ya later!")
             break
         else:
             print("Invalid choice. Please choose a number between 1 and 5.")
