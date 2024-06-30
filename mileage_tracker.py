@@ -1,5 +1,7 @@
 import json
 import pandas as pd 
+from termcolor import colored
+
 
 def load_data():
     try:
@@ -41,14 +43,17 @@ def view_shoe_mileage(file_name):
         return
 
     # Print header
-    print("Shoe Mileage Tracker")
-    print("--------------------")
+    print(colored("Shoe Mileage Tracker", 'green'))
+    print(colored("--------------------", 'green'))
+
 
     # Print out each shoe's details
     for shoe in shoe_data:
         shoe_model = shoe.get('Shoe Model', 'Unknown Model')
         total_mileage = shoe.get('Total Mileage', 'Unknown Mileage')
-        print(f"{shoe_model}: {total_mileage} kilometers")
+         # Print that shoes details in pink
+        print(colored(f"{shoe_model}: {total_mileage} kilometers", 'blue'))
+
 
 # Example to use:
 # file_name = 'shoe_database.json'
@@ -62,13 +67,13 @@ def main():
     data = load_data()
     print(data)
     while True:
-        print("\nShoe Mileage Tracker")
-        print("1. Add Run")
-        print("2. View Shoe Mileage")
-        print("3. Add New Shoe")
-        print("4. Delete Shoe")
-        print("5. Exit")
-        choice = input("What would you like to do? ")
+        print(colored("\nShoe Mileage Tracker", 'white'))
+        print(colored("1. Add Run", 'magenta'))
+        print(colored("2. View Shoe Mileage", 'yellow'))
+        print(colored("3. Add New Shoe", 'blue'))
+        print(colored("4. Delete Shoe", 'red'))
+        print(colored("5. Exit", 'green'))
+        choice = input(colored("What would you like to do? ", 'white'))
         
         if choice == '1':
             shoe_name = input("Enter shoe name: ")
@@ -89,7 +94,7 @@ def main():
             print(f"Shoe '{shoe_name}' deleted!")
         elif choice == '5':
             save_data(data)
-            print("Exiting program. See ya later!")
+            print(colored("Exiting program. See ya later!", 'magenta'))
             break
         else:
             print("Invalid choice. Please choose a number between 1 and 5.")
