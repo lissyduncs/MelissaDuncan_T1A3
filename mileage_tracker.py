@@ -61,7 +61,16 @@ def view_shoe_mileage(file_name):
 
 def delete_shoe(data, shoe_name):
     if shoe_name in data:
-        del data[shoe_name]
+       del data[shoe_name]
+
+def check_shoe_reminders(data, mileage_threshold=800):
+    reminders = []
+    for shoe_name, shoe_info in data.items():
+        total_mileage = shoe_info.get('Total Mileage', 0)
+        if total_mileage >= mileage_threshold:
+            reminders.append(f"Reminder: Shoe '{shoe_name}' has reached {mileage_threshold} kilometers.")
+
+    return reminders
 
 def main():
     data = load_data()
@@ -72,6 +81,7 @@ def main():
         print(colored("2. View Shoe Mileage", 'yellow'))
         print(colored("3. Add New Shoe", 'blue'))
         print(colored("4. Delete Shoe", 'red'))
+        print(colored("5. Check Reminders", 'yellow'))
         print(colored("5. Exit", 'green'))
         choice = input(colored("What would you like to do? ", 'white'))
         
