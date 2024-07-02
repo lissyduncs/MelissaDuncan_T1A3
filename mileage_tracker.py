@@ -55,53 +55,49 @@ def view_shoe_mileage(file_name):
         print(colored(f"{shoe_model}: {total_mileage} kilometers", 'blue'))
 
 
-# Example to use:
-# file_name = 'shoe_database.json'
-# view_shoe_mileage(file_name)
-
 def delete_shoe(data, shoe_name):
     if shoe_name in data:
        del data[shoe_name]
 
-def check_shoe_reminders(data, mileage_threshold=800):
-    reminders = []
-    for shoe_name, shoe_info in data.items():
-        total_mileage = shoe_info.get('Total Mileage', 0)
-        if total_mileage >= mileage_threshold:
-            reminders.append(f"Reminder: Shoe '{shoe_name}' has reached {mileage_threshold} kilometers.")
-
-    return reminders
 
 def main():
     data = load_data()
     print(data)
     while True:
-        print(colored("\nShoe Mileage Tracker", 'white'))
-        print(colored("1. Add Run", 'magenta'))
-        print(colored("2. View Shoe Mileage", 'yellow'))
-        print(colored("3. Add New Shoe", 'blue'))
-        print(colored("4. Delete Shoe", 'red'))
-        print(colored("5. Check Reminders", 'yellow'))
-        print(colored("5. Exit", 'green'))
-        choice = input(colored("What would you like to do? ", 'white'))
+        print(colored("\nWelcome to the Shoe Mileage Tracker", 'yellow'))
+        print(colored("1. Add Run km's to shoe", 'magenta'))
+        print(colored("2. View Shoe Mileage", 'magenta'))
+        print(colored("3. Add New Shoe", 'magenta'))
+        print(colored("4. Delete Shoe", 'magenta'))
+        print(colored("5. Exit", 'blue'))
+        choice = input(colored("What would you like to do? ", 'green'))
         
+    
+        # Handling invalid choices
+        if choice not in ['1', '2', '3', '4', '5']:
+            print(colored("Invalid choice. Please choose a number between 1 and 5.", 'red'))
+            continue
         if choice == '1':
             shoe_name = input("Enter shoe name: ")
             distance = float(input("What distance did you run (in km's): "))
             add_run(data, shoe_name, distance)
             print("Run added!")
+        # Check if shoe mileage is >= 800 and print a message to buy new shoes
+        if data.get(shoe_name, 0) >= 800:
+            print(colored("It's time for you to get new shoes!", 'red'))
+
         elif choice == '2':
             print("\nShoe Mileage:")
             for shoe, mileage in data.items():
-                print(f"{shoe}: {mileage} miles")
+                print(f"{shoe}: {mileage} km's")
         elif choice == '3':
             shoe_name = input("Enter new shoe name: ")
             add_new_shoe(data, shoe_name)
-            print(f"Shoe '{shoe_name}' added!")
+            print(colored(f"Shoe '{shoe_name}' added!", 'green'))
         elif choice == '4':
             shoe_name = input("Enter the shoe you would like to delete: ")
             delete_shoe(data, shoe_name)
-            print(f"Shoe '{shoe_name}' deleted!")
+            print(colored(f"Shoe '{shoe_name}' deleted!", 'red'))
         elif choice == '5':
             save_data(data)
             print(colored("Exiting program. See ya later!", 'magenta'))
