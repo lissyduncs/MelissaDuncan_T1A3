@@ -64,6 +64,7 @@ def main():
     data = load_data()
     print(data)
     while True:
+      # Display the menu options in colored text
         print(colored("\nWelcome to the Shoe Mileage Tracker", 'yellow'))
         print(colored("1. Add Run km's to shoe", 'magenta'))
         print(colored("2. View Shoe Mileage", 'magenta'))
@@ -73,15 +74,11 @@ def main():
         choice = input(colored("What would you like to do? ", 'green'))
         
     
-        # Handling invalid choices
-        if choice not in ['1', '2', '3', '4', '5']:
-            print(colored("Invalid choice. Please choose a number between 1 and 5.", 'red'))
-            continue
         if choice == '1':
-            shoe_name = input("Enter shoe name: ")
-            distance = float(input("What distance did you run (in km's): "))
+            shoe_name = input(colored("Enter shoe name: ", 'blue'))
+            distance = float(input("What distance did you run (in km's): ",))
             add_run(data, shoe_name, distance)
-            print("Run added!")
+            print(colored("Run added!", 'green'))
         # Check if shoe mileage is >= 800 and print a message to buy new shoes
         if data.get(shoe_name, 0) >= 800:
             print(colored("It's time for you to get new shoes!", 'red'))
