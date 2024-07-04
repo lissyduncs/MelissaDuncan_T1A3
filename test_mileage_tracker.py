@@ -49,7 +49,20 @@ def test_delete_shoe(setup_data):
     delete_shoe(data, shoe_name)
     assert shoe_name not in data
 
-# You can add more tests for other functionalities as needed
+def test_invalid_distance(setup_data):
+    data = load_data()
+    shoe_name = "Nike Pegasus"
+    distance = "abc"  # Invalid distance 
+    with pytest.raises(TypeError):
+        add_run(data, shoe_name, distance)
+
+def test_invalid_shoe_name(setup_data):
+    data = load_data()
+    shoe_name = "Nonexistent Shoe"
+    distance = 10
+    with pytest.raises(ValueError):
+        add_run(data, shoe_name, distance)
+
 
 if __name__ == "__main__":
     pytest.main()

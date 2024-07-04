@@ -26,8 +26,13 @@ def save_data(data):
 def add_run(data, shoe_name, distance):
     if shoe_name in data:
         data[shoe_name] += distance
+        print(colored("Run added!", 'green'))
     else:
-        data[shoe_name] = distance
+        print(colored("Shoe not found in database.", 'red'))
+
+    
+    #else:
+        #data[shoe_name] = distance
 
 def add_new_shoe(data, shoe_name):
     data[shoe_name] = 0  # Assuming initial km's is 0
@@ -77,13 +82,12 @@ def main():
     
         if choice == '1':
             shoe_name = input(colored("Enter shoe name: ", 'blue'))
-            distance = float(input("What distance did you run (in km's): ",))
+            distance = float(input("What distance did you run (in km's): "))
             add_run(data, shoe_name, distance)
+            if shoe_name in data and data[shoe_name] >= 800:
+                 print(colored("It's time for you to get new shoes!", 'red'))
             print(colored("Run added!", 'green'))
-        # Check if shoe km mileage is >= 800 and print a message to buy new shoes
-        if data.get(shoe_name, 0) >= 800:
-            print(colored("It's time for you to get new shoes!", 'red'))
-            continue
+
 
         elif choice == '2':
             if not data:  # Check if the data is empty
@@ -99,7 +103,7 @@ def main():
             shoe_name = input("Enter the shoe you would like to delete: ")
             delete_shoe(data, shoe_name)
             print(colored(f"Shoe '{shoe_name}' deleted!", 'red'))
-            
+
         elif choice == '5':
             save_data(data)
             print(colored("Exiting program. See ya later!", 'magenta'))
