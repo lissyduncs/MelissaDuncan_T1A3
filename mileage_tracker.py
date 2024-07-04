@@ -62,7 +62,8 @@ def delete_shoe(data, shoe_name):
 
 def main():
     data = load_data()
-    print(data)
+    shoe_name = "" # initalise it
+    #print(data)
     while True:
       # Display the menu options in colored text
         print(colored("\nWelcome to the Shoe Mileage Tracker", 'yellow'))
@@ -79,11 +80,14 @@ def main():
             distance = float(input("What distance did you run (in km's): ",))
             add_run(data, shoe_name, distance)
             print(colored("Run added!", 'green'))
-        # Check if shoe mileage is >= 800 and print a message to buy new shoes
+        # Check if shoe km mileage is >= 800 and print a message to buy new shoes
         if data.get(shoe_name, 0) >= 800:
             print(colored("It's time for you to get new shoes!", 'red'))
+            continue
 
         elif choice == '2':
+            if not data:  # Check if the data is empty
+                print(colored("No shoes tracked yet.", 'yellow'))
             print("\nShoe Mileage:")
             for shoe, mileage in data.items():
                 print(f"{shoe}: {mileage} km's")
@@ -95,6 +99,7 @@ def main():
             shoe_name = input("Enter the shoe you would like to delete: ")
             delete_shoe(data, shoe_name)
             print(colored(f"Shoe '{shoe_name}' deleted!", 'red'))
+            
         elif choice == '5':
             save_data(data)
             print(colored("Exiting program. See ya later!", 'magenta'))

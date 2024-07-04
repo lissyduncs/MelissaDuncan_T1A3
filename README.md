@@ -68,3 +68,8 @@ Data is stored in `shoe_database.json`:
 Data is loaded from `shoe_database.json` when the program starts.
 Changes made to the data are saved back to `shoe_database.json` before exiting the program
 
+### Project Management
+
+- Trello Board
+https://trello.com/b/AigANtZR/mileage-tracker
+
