@@ -2,22 +2,22 @@ import pytest
 import json
 from mileage_tracker import load_data, save_data, add_run, add_new_shoe, delete_shoe
 
-# Fixture to load test data
+# Pytest fixture to load and set up test data
 @pytest.fixture
 def setup_data():
-    # Example data for testing
+    # data for testing
     initial_data = {
         "Nike Pegasus": 300,
         "Adidas Ultraboost": 500,
         "New Balance Fresh Foam": 700
     }
-    # Save data to a temporary file
+    # Save data to a temporary file and overwrite 
     with open('test_shoe_database.json', 'w') as f:
         json.dump(initial_data, f)
     
-    yield 'test_shoe_database.json'  # Provide the fixture value
+    yield 'test_shoe_database.json'  # Provide values
     
-    # Clean up after test
+    # remove everything after testing
     import os
     os.remove('test_shoe_database.json')
 
