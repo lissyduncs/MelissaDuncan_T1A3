@@ -16,7 +16,11 @@ The Shoe Mileage Tracker is an essential app for runners to track shoe usage and
 
 1. Clone the repository: https://github.com/lissyduncs/MelissaDuncan_T1A3
 
-2. Install packages: pip install pandas
+2. Create a virtual environment and activate it:
+    python -m venv venv          
+    venv\Scripts\activate
+
+3. Install packages: pip install pandas
 pip install -r requirements.txt
 
 ## Usage/Functionality
@@ -72,4 +76,7 @@ Changes made to the data are saved back to `shoe_database.json` before exiting t
 
 - Trello Board
 https://trello.com/b/AigANtZR/mileage-tracker
+
+- Sitemap
+https://app.diagrams.net/
 
