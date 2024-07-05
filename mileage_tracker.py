@@ -48,8 +48,8 @@ def add_run(data, shoe_name, distance):
         #data[shoe_name] = distance
 
 def add_new_shoe(data, shoe_name):
-    data[shoe_name] = 0  # Assuming initial km's is 0
-    save_data(data)      # Save updated data to the JSON file
+    data[shoe_name] = 0  #  initial km's is 0
+    save_data(data)      # Save updated data to  JSON file
 
 
 def view_shoe_mileage(file_name):
