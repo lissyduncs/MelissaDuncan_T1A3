@@ -7,8 +7,8 @@ def load_data():
     try:
         with open('shoe_database.json', 'r') as f:
             data = json.load(f)
-    except FileNotFoundError: # use of error handling except 
-        data = {} #json structure is dictionary
+    except FileNotFoundError: # use of except 
+        data = {} 
     return data
 
 def load_data_from_json(file_name):
@@ -26,9 +26,22 @@ def save_data(data):
 def add_run(data, shoe_name, distance):
     if shoe_name in data:
         data[shoe_name] += distance
-        print(colored("Run added!", 'green'))
+        #print(colored("Run added!", 'green'))
     else:
-        print(colored("Shoe not found in database.", 'red'))
+        data[shoe_name] = distance
+        print(colored("New shoe added!", 'green'))
+
+        # Save new shoe
+        save_data(data)
+
+
+
+#def add_run(data, shoe_name, distance):
+   # if shoe_name in data:
+       # data[shoe_name] += distance
+        #print(colored("Run added!", 'green'))
+    #else:
+       # print(colored("Shoe not found in database.", 'red'))
 
     
     #else:
@@ -79,14 +92,23 @@ def main():
         print(colored("5. Exit", 'blue'))
         choice = input(colored("What would you like to do? ", 'green'))
         
-    
         if choice == '1':
             shoe_name = input(colored("Enter shoe name: ", 'blue'))
-            distance = float(input("What distance did you run (in km's): "))
+    
+            while True:
+                try:
+                    distance = float(input("What distance did you run (in km's): "))
+                    break  
+                except ValueError:
+                    print(colored("Invalid distance. Please enter a valid number.", 'red'))
+
             add_run(data, shoe_name, distance)
-            if shoe_name in data and data[shoe_name] >= 800:
+
+ 
+            if data.get(shoe_name, 0) >= 800:
                  print(colored("It's time for you to get new shoes!", 'red'))
-            print(colored("Run added!", 'green'))
+    
+            print(colored("Run added!", 'green'))  # Print "Run added!" message after successful addition
 
 
         elif choice == '2':
