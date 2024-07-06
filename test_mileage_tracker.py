@@ -52,7 +52,7 @@ def test_delete_shoe(setup_data):
 def test_invalid_distance(setup_data):
     data = load_data()
     shoe_name = "Nike Pegasus"
-    distance = "abc"  # Invalid distance 
+    distance = "abc"  
     with pytest.raises(TypeError):
         add_run(data, shoe_name, distance)
 

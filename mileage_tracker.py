@@ -26,13 +26,13 @@ def save_data(data):
 def add_run(data, shoe_name, distance):
     if shoe_name in data:
         data[shoe_name] += distance
-        #print(colored("Run added!", 'green'))
+        print(colored("Run added!", 'green'))
     else:
         data[shoe_name] = distance
         print(colored("New shoe added!", 'green'))
 
-        # Save new shoe
-        save_data(data)
+    save_data(data)
+
 
 
 
