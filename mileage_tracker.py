@@ -4,10 +4,10 @@ from termcolor import colored
 
 
 def load_data():
-    try:
+    try: #use of try/except
         with open('shoe_database.json', 'r') as f:
             data = json.load(f)
-    except FileNotFoundError: # use of except 
+    except FileNotFoundError: 
         data = {} 
     return data
 
@@ -53,7 +53,7 @@ def add_new_shoe(data, shoe_name):
 
 
 def view_shoe_mileage(file_name):
-    # Load shoe data from JSON
+    
     shoe_data = load_data_from_json(file_name)
 
     if not shoe_data:
@@ -61,8 +61,8 @@ def view_shoe_mileage(file_name):
         return
 
     # Print header
-    print(colored("Shoe Mileage Tracker", 'green'))
-    print(colored("--------------------", 'green'))
+    #print(colored("Shoe Mileage Tracker", 'green'))
+    #print(colored("--------------------", 'green'))
 
 
     # Print out each shoe's details
@@ -81,7 +81,7 @@ def delete_shoe(data, shoe_name):
 def main():
     data = load_data()
     shoe_name = "" # initalise it
-    #print(data)
+    
     while True:
       # Display the menu options in colored text
         print(colored("\nWelcome to the Shoe Mileage Tracker", 'yellow'))
